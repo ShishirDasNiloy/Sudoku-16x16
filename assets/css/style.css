@@ -1,0 +1,290 @@
+:root {
+    --cellcolor: #b4f5cd;
+    --bcolor: #dae0dd;
+    --pcolor: #fff;
+    --gamecolor: #1e915b;
+    --error: #e91e63;
+    --scolor: #000;
+
+    --nav-size: 70px;
+    --sudoku-cell-size: 30px;
+
+    --border-radius: 5px;
+    --space-y: 20px;
+    --gap: 5px;
+
+    --fsize: 1.3rem;
+    --fsizelg: 2rem;
+    --fsizexl: 3.5rem;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body{
+    font-family: sans-serif;
+    background-color: var(--bcolor);
+    color: var(--scolor);
+}
+input{
+    font-family: sans-serif;
+    border: 2px solid var(--pcolor);
+    color: var(--scolor);
+    
+}
+input:hover,
+input:focus{
+    border-color: (var(--gamecolor));
+}
+nav{
+    background-color: var(--gamecolor);
+    color: var(--scolor);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+.navbar{
+    max-width: 1280px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    height: var(--nav-size);
+}
+
+.game-name{
+    font-size: var(--fsizexl);
+    color: var(--pcolor);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.main{
+    padding-left: var(--nav-size);
+    display: grid;
+    place-items: center;
+}
+.screen{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    /*min-width: 400px;*/
+}
+
+.start-screen{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+
+.start-screen.active{
+    transform: translateX(0);
+}
+.start-screen > * + *{
+    margin-top: 20px;
+}
+.input-name{
+    height: 80px;
+    width: 280px;
+    border-radius: var(--border-radius);
+    outline: 0;
+    background-color: var(--pcolor);
+    padding: 20px;
+    font-size: var(--fsizelg);
+    text-align: center;
+    font-weight: 900;
+}
+.btn{
+    height: 80px;
+    width: 280px;
+    background-color: var(--pcolor);
+    color: var(--scolor);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+    font-size: var(--fsizelg);
+    cursor: pointer;
+}
+.btn-green{
+    background-color: var(--gamecolor);
+    color: var(--pcolor);
+}
+.input-err{
+    border-color: var(--red);
+}
+
+.main-game{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 0;
+    margin-top: 50px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+.main-game.active {
+    transform: translateX(0);
+}
+.sudokugrid {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(16, auto);
+}
+.cell {
+    height: var(--sudoku-cell-size);
+    width: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    background-color: var(--pcolor);
+    color: var(--gamecolor);
+    display: grid;
+    place-items: center;
+    font-size: var(--fsize);
+    cursor: pointer;
+    border: 1px solid black;
+}
+.cell.filled{
+    background-color: var(--cellcolor);
+    color: var(--scolor);
+}
+.cell.selected {
+    background-color: var(--gamecolor);
+    color: var(--pcolor);
+}
+.cell:hover {
+    border: 2px solid var(--gamecolor);
+}
+.cell.hover {
+    border: 3px solid var(--gamecolor);
+}
+.cell.err {
+    background-color: var(--error);
+    color: var(--pcolor);
+}
+.game-info{
+    margin-top: var(--space-y);
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    
+}
+.game-info-box{
+    height: 45px;
+    background-color: var(--pcolor);
+    color: var(--gamecolor);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    padding: 0 20px;
+    font-size: var(--fsizelg);
+    font-weight: bold;
+}
+.game-time{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2rem;
+}
+.pause-btn {
+    position: absolute;
+    right: 10px;
+    height: 30px;
+    width: 80px;
+    border-radius: var(--border-radius);
+    background-color: var(--gamecolor);
+    color: var(--pcolor);
+    font-size: var(--fsize);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.number {
+    background-color: var(--gamecolor);
+    color: var(--pcolor);
+    height: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    font-size: var(--fsize);
+    cursor: pointer;
+}
+.delete {
+    background-color: var(--error);
+    color: var(--pcolor);
+    height: var(--sudoku-cell-size);
+    border-radius: var(--border-radius);
+    display: grid;
+    place-items: center;
+    font-size: var(--fsize);
+    cursor: pointer;
+}
+.pause-screen,
+.result-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bcolor);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: none;
+    font-size: var(--fsizelg);
+    text-align: center;
+    font-weight: 900;
+}
+.pause-screen.active,
+.result-screen.active {
+    display: flex;
+}
+
+.pause-screen > * + *,
+.result-screen > * + * {
+    margin-top: 20px;
+}
+
+
+.result-screen .congrate {
+    font-size: var(--fsizelg);
+    color: var(--gamecolor);
+}
+
+.result-screen .info {
+    color: var(--scolor);
+    font-size: var(--fsize);
+}
+
+#result-time {
+    color: var(--gamecolor);
+    font-size: var(--fsizelg);
+}
+
+
